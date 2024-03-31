@@ -40,16 +40,19 @@ describe('GET /api/v1', () => {
     await mongoose.connection.close();
   });
 
+  // ✅
   // test not found
   it('responds with a not found message', async () => {
     await getNotFound(app);
   });
 
+  // ✅
   // test login error
   it('should return error message on invalid credentials', async () => {
     await postAuthLoginError(app);
   });
 
+  // ✅
   // test create user
   let token: string;
   let user: UserWithToken;
@@ -62,6 +65,7 @@ describe('GET /api/v1', () => {
     await postUser(app, testUser);
   });
 
+  // ✅
   // test login
   it('should return a user object and bearer token on valid credentials', async () => {
     user = await postAuthLogin(app, {
@@ -71,26 +75,31 @@ describe('GET /api/v1', () => {
     token = user.token;
   });
 
+  // ✅
   // test get all users
   it('should return array of users', async () => {
     await getUser(app);
   });
 
+  // ✅
   // test get single user
   it('should return single user', async () => {
     await getSingleUser(app, user.user._id);
   });
 
+  // ✅
   // test update user
   it('should update user', async () => {
     await putUser(app, token);
   });
 
+  // ✅
   // test get current user based on token
   it('should return current user', async () => {
     await getCurrentUser(app, token);
   });
 
+  // ✅
   // test cat upload without GPS
   let catID: string;
   it('should upload a cat', async () => {
@@ -98,6 +107,7 @@ describe('GET /api/v1', () => {
     catID = message.data._id;
   });
 
+  // ✅
   // test cat upload with GPS
   let catID2: string;
   it('should upload a cat with GPS', async () => {
@@ -105,16 +115,19 @@ describe('GET /api/v1', () => {
     catID2 = message.data._id;
   });
 
+  // ✅
   // test get all cats
   it('should return array of cats', async () => {
     await getCat(app);
   });
 
+  // ✅
   // test get single cat
   it('should return single cat', async () => {
     await getSingleCat(app, catID);
   });
 
+  // ✅
   // get cats by current user
   it('should return cats by current user', async () => {
     await getCatByOwner(app, token);
@@ -125,11 +138,13 @@ describe('GET /api/v1', () => {
     await getCatByBoundingBox(app);
   });
 
+  // ✅
   // modify user's cat
   it('should modify a cat', async () => {
     await userPutCat(app, token, catID);
   });
 
+  // ✅
   // upload another cat for admin tests
   let catID3: string;
   it('should upload a cat for admin test', async () => {
@@ -137,6 +152,7 @@ describe('GET /api/v1', () => {
     catID3 = message.data._id;
   });
 
+  // ✅
   // login as admin
   let adminToken: string;
   it('should login as admin', async () => {
@@ -147,26 +163,31 @@ describe('GET /api/v1', () => {
     adminToken = user.token;
   });
 
+  // ✅
   // test modify user's cat as admin
   it('should modify a cat as admin', async () => {
     await adminPutCat(app, adminToken, catID3);
   });
-
+  
+  // ✅
   // test delete user's cat as admin
   it('should delete a cat as admin', async () => {
     await adminDeleteCat(app, adminToken, catID3);
   });
 
+  // ✅
   // test delete user's cat
   it('should delete a cat', async () => {
     await userDeleteCat(app, token, catID);
   });
 
+  // ✅
   // delete GPS image
   it('should delete GPS image', async () => {
     await userDeleteCat(app, token, catID2);
   });
 
+  // ✅
   // test delete user based on token
   it('should delete current user', async () => {
     await deleteUser(app, token);
