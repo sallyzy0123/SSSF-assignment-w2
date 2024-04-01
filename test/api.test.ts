@@ -40,7 +40,6 @@ describe('GET /api/v1', () => {
     await mongoose.connection.close();
   });
 
-  /*
   // ✅
   // test not found
   it('responds with a not found message', async () => {
@@ -193,5 +192,4 @@ describe('GET /api/v1', () => {
   it('should delete current user', async () => {
     await deleteUser(app, token);
   });
-  */
 });
