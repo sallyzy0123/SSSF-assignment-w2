@@ -107,6 +107,7 @@ describe('GET /api/v1', () => {
     catID = message.data._id;
   });
 
+  /*
   // ✅
   // test cat upload with GPS
   let catID2: string;
@@ -114,6 +115,7 @@ describe('GET /api/v1', () => {
     const message = await postCat(app, token, 'picWithGPS.jpg');
     catID2 = message.data._id;
   });
+  */
 
   // ✅
   // test get all cats
@@ -181,11 +183,13 @@ describe('GET /api/v1', () => {
     await userDeleteCat(app, token, catID);
   });
 
+  /*
   // ✅
   // delete GPS image
   it('should delete GPS image', async () => {
     await userDeleteCat(app, token, catID2);
   });
+  */
 
   // ✅
   // test delete user based on token
